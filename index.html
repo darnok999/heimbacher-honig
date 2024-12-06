@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Heimbacher Honig - Jetzt kaufen</title>
+    <link rel="stylesheet" href="style.css">
+    <meta name="description" content="Kaufen Sie köstlichen, nachhaltig geernteten Honig direkt vom Imker.">
+</head>
+<body>
+    <header style="display: flex; align-items: center; justify-content: space-between; padding: 20px;">
+        <div style="flex: 1; display: flex; align-items: center;">
+            <img src="logo.png" alt="Heimbacher Honig Logo - Nachhaltiger Honig direkt vom Imker" style="width: 40px; height: auto;">
+        </div>
+        <h2 style="flex: 2; text-align: center; margin: 0; font-size: 1.2em;">Heimbacher Honig</h2>
+        <div style="flex: 1; display: flex; justify-content: flex-end; align-items: center; gap: 10px;">
+            <img src="contact_icon.png" alt="Contact us" style="width: 20px; height: 20px;">
+            <div id="cart-icon" style="position: relative; cursor: pointer;">
+                <img src="cart_icon.png" alt="View shopping cart" style="width: 20px; height: 20px;">
+                <span id="cart-count" style="position: absolute; top: -8px; right: -8px; background-color: #5a4a29; color: white; border-radius: 50%; padding: 2px 6px; font-size: 12px;">0</span>
+            </div>
+        </div>
+    </header>
+    <main>
+        <section id="product" style="margin-top: -40px;">
+            <div style="max-width: 600px; margin: 20px auto; text-align: center; padding: 30px; background-color: white; border: 1px solid #e0e0e0; border-radius: 8px; box-shadow: 0 8px 30px rgba(0,0,0,0.25);">
+                <h2 style="color: #5a4a29; font-size: 1.8em; margin-bottom: 40px; font-weight: bold;">Honig vom lokalen Imker natürlich & lecker!</h2>
+                <img src="honey_jar.png" alt="500g jar of honey" loading="lazy">
+                <h3 style="margin-bottom: 10px;">Honig im 500g Glas</h3>
+                <p style="font-size: 2.5em; color: #5a4a29; text-align: center; font-weight: bold; margin: 10px 0;">
+                    6,50€
+                    <span style="display: block; font-size: 0.3em; margin-top: 5px;">zzgl. Versandkosten</span>
+                </p>
+                <button type="button" onclick="addToCart()" style="margin: 20px auto; display: block;">Jetzt kaufen</button>
+            </div>
+        </section>
+        <section id="reviews" style="padding: 60px 20px; text-align: center; background-color: #faf6f0;">
+            <h2 style="color: #5a4a29; margin-bottom: 40px; font-size: 2em;">Was unsere Kunden sagen</h2>
+            
+            <div style="display: flex; justify-content: center; gap: 40px; flex-wrap: wrap; max-width: 1200px; margin: 0 auto;">
+                <!-- Erste Bewertung -->
+                <div style="flex: 1; min-width: 280px; max-width: 450px; padding: 30px; background-color: white; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); transition: transform 0.3s ease; cursor: pointer;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
+                    <div style="width: 60px; height: 60px; border-radius: 50%; margin: -50px auto 15px auto; overflow: hidden;">
+                        <img src="profile1.jpg" alt="Sam A." style="width: 100%; height: 100%; object-fit: cover;">
+                    </div>
+                    <div style="color: #ffd700; font-size: 24px; margin-bottom: 15px;">
+                        ★★★★★
+                    </div>
+                    <p style="font-style: italic; color: #666; line-height: 1.6; margin-bottom: 20px;">"Ausgezeichneter Honig! Man schmeckt die Qualität und Frische. Werde definitiv wieder bestellen."</p>
+                    <p style="font-weight: 600; color: #5a4a29;">Sam A.</p>
+                </div>
+                
+                <!-- Zweite Bewertung -->
+                <div style="flex: 1; min-width: 280px; max-width: 450px; padding: 30px; background-color: white; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); transition: transform 0.3s ease; cursor: pointer;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
+                    <div style="width: 60px; height: 60px; border-radius: 50%; margin: -50px auto 15px auto; overflow: hidden;">
+                        <img src="profile2.jpg" alt="Darnok K." style="width: 100%; height: 100%; object-fit: cover;">
+                    </div>
+                    <div style="color: #ffd700; font-size: 24px; margin-bottom: 15px;">
+                        ★★★★★
+                    </div>
+                    <p style="font-style: italic; color: #666; line-height: 1.6; margin-bottom: 20px;">"Der beste Honig, den ich je probiert habe! Die Lieferung war schnell und die Verpackung sehr sorgfältig."</p>
+                    <p style="font-weight: 600; color: #5a4a29;">Darnok K.</p>
+                </div>
+            </div>
+        </section>
+        <div style="margin-top: 20px;">
+            <div class="slide" style="display: block;"><img src="slide1.jpg" alt="Slideshow Image 1" style="width: 100%; border-radius: 8px;"></div>
+            <div class="slide" style="display: none;"><img src="slide2.jpg" alt="Slideshow Image 2" style="width: 100%; border-radius: 8px;"></div>
+            <div class="slide" style="display: none;"><img src="slide3.jpg" alt="Slideshow Image 3" style="width: 100%; border-radius: 8px;"></div>
+        </div>
+
+        <script>
+            let slideIndex = 0;
+            showSlides();
+
+            function showSlides() {
+                let slides = document.getElementsByClassName("slide");
+                for (let i = 0; i < slides.length; i++) {
+                    slides[i].style.display = "none";
+                }
+                slideIndex++;
+                if (slideIndex > slides.length) { slideIndex = 1; }
+                slides[slideIndex - 1].style.display = "block";
+                setTimeout(showSlides, 20000); 
+            }
+        </script>
+          </p>
+          <div style="max-width: 1200px; margin: 0 auto; padding: 20px; background-color: #fff; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
+              <p style="text-align: center; margin-bottom: 10px; color: #5a4a29; font-weight: 600;">
+                  Sichere Zahlung mit:
+              </p>
+              <div style="margin: 20px 0; display: flex; justify-content: center; gap: 15px;">
+                  <img src="paypal.png" alt="PayPal" style="height: 20px; width: auto;">
+                  <img src="klarna.png" alt="Visa" style="height: 20px; width: auto;">
+                  <img src="mastercard.png" alt="Mastercard" style="height: 20px; width: auto;">
+                  <img src="visa.png" alt="SEPA" style="height: 20px; width: auto;">
+              </div>
+          </div>
+      </section>
+    </main>
+    <footer style="max-width: 1200px; margin: 0 auto; background-color: #fff; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
+        <p style="text-align: center;">&copy; 2024 Heimbacher Honig. Alle Rechte vorbehalten.</p>
+    </footer>
+    <div id="cart-popup" style="display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); 
+        background-color: white; padding: 20px; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.1); z-index: 1000;">
+        <h3>Warenkorb</h3>
+        <div id="cart-items"></div>
+        <p>Gesamtsumme: <span id="cart-total">0,00</span>€</p>
+        <button onclick="closeCart()">Schließen</button>
+        <button onclick="checkout()" style="background-color: #5a4a29; color: white;">Zur Kasse</button>
+    </div>
+
+    <script>
+    let cart = {
+        items: [],
+        total: 0
+    };
+
+    function addToCart() {
+        cart.items.push({
+            name: "Honig im 500g Glas",
+            price: 6.50,
+            quantity: 1
+        });
+        cart.total += 6.50;
+        updateCartDisplay();
+    }
+
+    function updateCartDisplay() {
+        document.getElementById('cart-count').textContent = cart.items.length;
+        const cartItems = document.getElementById('cart-items');
+        cartItems.innerHTML = '';
+        
+        cart.items.forEach((item, index) => {
+            cartItems.innerHTML += `
+                <div style="margin: 10px 0; padding: 10px; border-bottom: 1px solid #eee;">
+                    ${item.name} - ${item.price.toFixed(2)}€
+                    <button onclick="removeItem(${index})" style="margin-left: 10px;">Entfernen</button>
+                </div>
+            `;
+        });
+        
+        document.getElementById('cart-total').textContent = cart.total.toFixed(2);
+    }
+
+    function removeItem(index) {
+        cart.total -= cart.items[index].price;
+        cart.items.splice(index, 1);
+        updateCartDisplay();
+    }
+
+    function closeCart() {
+        document.getElementById('cart-popup').style.display = 'none';
+    }
+
+    function checkout() {
+        alert('Weiterleitung zur Bezahlung...');
+        // Hier könnte die Weiterleitung zum Bezahlvorgang implementiert werden
+    }
+
+    // Warenkorb öffnen wenn auf das Icon geklickt wird
+    document.getElementById('cart-icon').addEventListener('click', function() {
+        document.getElementById('cart-popup').style.display = 'block';
+    });
+    </script>
+</body>
+</html>
